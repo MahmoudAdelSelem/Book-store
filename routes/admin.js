@@ -12,6 +12,8 @@ const router = express.Router();
 router.get('/add-product',productsController.getAddProductrouter
 );
 
+router.get('/products',productsController.getAdminProducts);
+
 // /admin/add-product => POST
 router.post('/add-product', productsController.postAddProduct);
 

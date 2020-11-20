@@ -2,7 +2,7 @@ const Product =require('../models/products.js');
 
 //exports.products = products ;
 exports.getAddProductrouter = (req, res, next) => {
-    res.render('add-product', {
+    res.render('admin/add-product', {
       pageTitle: 'Add Product',
       path: '/admin/add-product',
       formsCSS: true,
@@ -10,6 +10,20 @@ exports.getAddProductrouter = (req, res, next) => {
       activeAddProduct: true
     });
   };
+
+  exports.getAdminProducts = (req, res, next) => {
+    const products = Product.fetchAll((products)=>{
+    res.render('admin/products', {
+      prods : products,
+      pageTitle: 'AdminProduct',
+      path : '/admin/products',
+      formsCSS: true,
+      productCSS: true,
+      activeAddProduct: true
+    });
+  });
+}
+
 
 
   //req.body.title
@@ -23,10 +37,10 @@ exports.getAddProductrouter = (req, res, next) => {
 
 
   exports.getProducts = (req, res, next) => {
-    const products = Product.fetchAll((products)=>{res.render('shop', {
+    const products = Product.fetchAll((products)=>{res.render('shop/product-list', {
       prods: products,
       pageTitle: 'Shop',
-      path: '/',
+      path: '/shop/product-list',
       hasProducts: products.length > 0,
       activeShop: true,
       productCSS: true
