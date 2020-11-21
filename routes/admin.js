@@ -3,19 +3,19 @@ const path = require('path');
 const express = require('express');
 
 //const rootDir = require('../util/path');
-const productsController = require('../controllers/products.js');
+const adminProducts = require('../controllers/admin.js');
 const router = express.Router();
 
 
 
 // /admin/add-product => GET
-router.get('/add-product',productsController.getAddProductrouter
+router.get('/add-product',adminProducts.getAddProductrouter
 );
 
-router.get('/products',productsController.getAdminProducts);
+router.get('/products',adminProducts.getAdminProducts);
 
 // /admin/add-product => POST
-router.post('/add-product', productsController.postAddProduct);
+router.post('/add-product', adminProducts.postAddProduct);
 
 module.exports = router;
 
