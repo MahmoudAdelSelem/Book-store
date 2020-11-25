@@ -39,11 +39,30 @@ exports.getIndex = (req, res, next) => {
 
   }
 
+  exports.getOrders = (req,res,next) => {
+    res.render('shop/orders',{
+        pageTitle : 'orders',
+        path : 'shop/orders'
+    });
+
+}
+
   exports.checkOut = (req,res,next) => {
     res.render('shop/check-out',{
         pageTitle : 'Cart',
         path : 'shop/check-out'
     });
 
+}
+
+
+
+exports.getProduct = (req,res,next)=>{
+  const productId = req.params.productId ;
+  console.log(productId);
+  res.render('shop/product-deatail',{
+    pageTitle :'Deatails',
+    path : "shop/product-deatail"
+  });
 }
 
