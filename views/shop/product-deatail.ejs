@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main>
+       
+            <div class="grid">
+                
+                    <article class="centerd">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= product.title %></h1>
+                        </header>
+                        <div class="card__image">
+                            <img src= "<%= product.imgurl %>" alt="A Book">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price"> $<%= product.price ? product.price  : "Not defiened"  %></h2>
+                            <p class="product__description"> <%= product.description ? product.description  : "Not defiened"  %> </p>
+                        </div>
+                        <div class="card__actions">
+                           
+                            <form class= "add-cart" action ="/shop/cart" method="POST">
+                                <button class="btn" type="submit">Add to Cart</button>
+                                <input type="hidden" name="productId" value="<%= product.id %>">
+                            </form>
+                            
+                        </div>
+                    </article>
+               
+            </div>
+        
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,4 +1,5 @@
 const Product =require('../models/products.js');
+const Cart =require('../models/cart.js');
 
 
 exports.getIndex = (req, res, next) => {
@@ -31,11 +32,20 @@ exports.getIndex = (req, res, next) => {
   }
 
 
-  exports.getCart = (req,res,next) => {
+  exports.PostCart = (req,res,next) => {
+    const productId = req.body.productId ;
+    Product.findById(productId,(product)=>{    
+      Cart.addProduct(productId,product.price);
+    })
+    console.log(productId);
+    res.redirect('/shop/cart');
+      };     
+
+    exports.getCart = (req,res,next) => {      
       res.render('shop/cart',{
-          pageTitle : 'Cart',
-          path : 'shop/cart'
-      });
+        pageTitle :"cart" ,
+        path : "/shop/cart"
+      });     
 
   }
 
@@ -59,10 +69,15 @@ exports.getIndex = (req, res, next) => {
 
 exports.getProduct = (req,res,next)=>{
   const productId = req.params.productId ;
-  console.log(productId);
-  res.render('shop/product-deatail',{
-    pageTitle :'Deatails',
-    path : "shop/product-deatail"
-  });
+  
+  Product.findById(productId , ((product) =>{
+    res.render('shop/product-deatail',{   
+      product :product ,
+      pageTitle :'Deatails',
+      path : "shop/product-list"
+    });
+    
+  }))
+  
 }
 

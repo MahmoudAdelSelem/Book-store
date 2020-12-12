@@ -8,7 +8,8 @@ const shopController = require('../controllers/shop.js');
 const router = express.Router();
 
 router.get('/',shopController.getIndex );
-router.get('/shop/cart',shopController.getCart );
+router.post('/shop/cart',shopController.PostCart );
+router.get('/shop/cart',shopController.getCart);
 router.get('/shop/orders',shopController.getOrders );
 router.get('/shop/product-list',shopController.getProductsList);
 router.get('/products/:productId',shopController.getProduct)
