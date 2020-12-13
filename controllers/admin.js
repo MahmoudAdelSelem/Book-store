@@ -40,11 +40,18 @@ exports.getAddProductrouter = (req, res, next) => {
     res.redirect('/admin/products');
 
   }
+
+  exports.postDeleteProduct =(req,res,next)=>{    
+    const newProduct = new Product(req.params.productId);
+    newProduct.delete();
+    console.log("deleted");
+    res.redirect('/admin/products');
+  }
   
   exports.postAddProduct = (req, res, next) => {
-    const product =new Product(req.body.title,req.body.price,req.body.imgurl,req.body.description,null);    
+    const product =new Product(null,req.body.title,req.body.price,req.body.imgurl,req.body.description);    
     product.save();
-    res.redirect('/');
+    res.redirect('/admin/products');
   };
 
   exports.getAdminProducts = (req, res, next) => {

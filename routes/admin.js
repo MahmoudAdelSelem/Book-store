@@ -14,10 +14,10 @@ router.get('/add-product',adminProducts.getAddProductrouter
 
 router.get('/products',adminProducts.getAdminProducts);
 
-// /admin/add-product => POST
+// /admin/=> POST
 router.post('/add-product', adminProducts.postAddProduct);
 router.post('/edit-product',adminProducts.postEditProduct);
-
+router.post('/delete/:productId',adminProducts.postDeleteProduct);
 router.get('/edit-product/:productId',adminProducts.getEditProduct);
 
 

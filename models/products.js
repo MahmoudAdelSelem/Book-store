@@ -23,6 +23,22 @@ module.exports=class Product {
 
     }
 
+    delete(){
+        getProductsFromFile((products)=>{
+            let existProductindex = products.findIndex((product)=> product.id ===this.id);
+            if(existProductindex != -1){
+            let updatedProducts =[...products];
+            updatedProducts.splice(existProductindex,1);
+            fs.writeFile(p,JSON.stringify(updatedProducts),err =>{
+                console.log(err);
+            })
+            }
+            else 
+            console.log("not here");
+        })
+
+    }
+
     
     save() {      
 
