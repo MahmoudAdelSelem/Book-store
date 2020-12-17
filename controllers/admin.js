@@ -42,8 +42,9 @@ exports.getAddProductrouter = (req, res, next) => {
   }
 
   exports.postDeleteProduct =(req,res,next)=>{    
-    const newProduct = new Product(req.params.productId);
-    newProduct.delete();
+    //const newProduct = new Product(req.params.productId);
+    const productId = req.params.productId ;
+    Product.deleteById(productId);
     console.log("deleted");
     res.redirect('/admin/products');
   }

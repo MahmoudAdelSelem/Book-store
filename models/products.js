@@ -1,6 +1,7 @@
 const fs =require('fs');
 const path = require('path');
 const p = path.join(path.dirname(process.mainModule.filename) ,'data','products.json');
+const Cart =require('./cart.js')
 const getProductsFromFile = (rp) => {    
         fs.readFile(p, (err ,fileContent) =>{
             if(err){
@@ -22,8 +23,22 @@ module.exports=class Product {
 
 
     }
+static deleteById(id){
+    
+    getProductsFromFile((products)=>{
+        const product = products.find(prod=>prod.id===id);
+        const updatedProducts = products.filter((product)=>product.id != id);
+        fs.writeFile(p,JSON.stringify(updatedProducts),err =>{
+            if(!err){
+            Cart.deleteProduct(id,product.price);
+            }
+        });
+    })
+    
 
-    delete(){
+}
+    //first delete method
+    /*delete(){
         getProductsFromFile((products)=>{
             let existProductindex = products.findIndex((product)=> product.id ===this.id);
             if(existProductindex != -1){
@@ -37,7 +52,7 @@ module.exports=class Product {
             console.log("not here");
         })
 
-    }
+    }*/
 
     
     save() {      
